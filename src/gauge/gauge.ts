@@ -81,10 +81,27 @@ export function arcOutline(
       .startAngle(startAngle)
       .endAngle(endAngle)
 
+    // .append('<linearGradient id="MyGradient">' +
+    //   '<stop offset="5%" stop-color="orange"></stop>' +
+    //   '<stop offset="95%" stop-color="yellow"></stop>' +
+    //   '</linearGradient>')
+
+    let linearGradient = svg.append('defs')
+      .append('linearGradient')
+      .attr('id', 'MyGradient')
+
+    linearGradient.append('stop')
+      .attr('offset', '5%')
+      .attr('stop-color', 'orange')
+
+    linearGradient.append('stop')
+      .attr('offset', '95%')
+      .attr('stop-color', 'yellow')
+
     let innerArc = svg
       .append('path')
       .attr('d', gaugeArc)
-      .attr('fill', color)
+      .attr('fill', 'url(#MyGradient)')
       .attr(
         'transform',
         'translate(' +
