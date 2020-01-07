@@ -45,7 +45,7 @@ export function needleValueModifier(needleValue: number) {
  * @returns value in radians.
  */
 export function perc2RadWithShift(perc: number) {
-  return (perc / 100 - 0.5) * 2*Math.PI
+  return (perc / 100 - 0.5) * 2 * Math.PI
 }
 
 /**
@@ -86,17 +86,20 @@ export function arcOutline(
     //   '<stop offset="95%" stop-color="yellow"></stop>' +
     //   '</linearGradient>')
 
-    let linearGradient = svg.append('defs')
+    let linearGradient = svg
+      .append('defs')
       .append('linearGradient')
       .attr('id', 'MyGradient')
 
-    linearGradient.append('stop')
+    linearGradient
+      .append('stop')
       .attr('offset', '5%')
-      .attr('stop-color', 'orange')
+      .attr('stop-color', '#013220')
 
-    linearGradient.append('stop')
+    linearGradient
+      .append('stop')
       .attr('offset', '95%')
-      .attr('stop-color', 'yellow')
+      .attr('stop-color', '#4eff00')
 
     let innerArc = svg
       .append('path')
@@ -176,7 +179,7 @@ export function arcOutline(
               centerY +
               ') ' +
               'rotate(' +
-              endAngle * 180 / Math.PI +
+              (endAngle * 180) / Math.PI +
               ', ' +
               0 +
               ',' +
@@ -191,11 +194,11 @@ export function arcOutline(
         let x =
           chartHeight +
           offset * 2 +
-          Math.cos(endAngle - 2*Math.PI / 2) * (chartHeight * spacing)
+          Math.cos(endAngle - (2 * Math.PI) / 2) * (chartHeight * spacing)
         let y =
           chartHeight +
           offset +
-          Math.sin(endAngle - 2*Math.PI / 2) * (chartHeight * spacing)
+          Math.sin(endAngle - (2 * Math.PI) / 2) * (chartHeight * spacing)
 
         // font size
         let fontScale = 0.09
@@ -216,7 +219,7 @@ export function arcOutline(
         // endAngle = PI/2 => offset = 0
         let xPadding = 4
         let xOffset =
-          (endAngle - Math.PI / 2) / Math.PI * (size.width + xPadding)
+          ((endAngle - Math.PI / 2) / Math.PI) * (size.width + xPadding)
 
         // now place label
         svg
@@ -343,17 +346,17 @@ export function labelOutline(
     ? areaWidth / 2 -
       outerRadius -
       arcWidth / 2 -
-      realRangeFontSize * rangeLabel[0].length / 2
+      (realRangeFontSize * rangeLabel[0].length) / 2
     : 0
   let rightRangeLabelOffsetX = rangeLabel[1]
     ? areaWidth / 2 +
       outerRadius +
       arcWidth / 2 -
-      realRangeFontSize * rangeLabel[1].length / 2
+      (realRangeFontSize * rangeLabel[1].length) / 2
     : 0
   let rangeLabelOffsetY = offset + chartHeight + realRangeFontSize * 2
   let centralLabelOffsetX =
-    areaWidth / 2 - realCentralFontSize * centralLabel.length / 2
+    areaWidth / 2 - (realCentralFontSize * centralLabel.length) / 2
   let centralLabelOffsetY = offset + chartHeight
 
   svg
