@@ -45,7 +45,7 @@ export function needleValueModifier(needleValue: number) {
  * @returns value in radians.
  */
 export function perc2RadWithShift(perc: number) {
-  return (perc / 100 - 0.5) * 1.5*Math.PI
+  return (perc / 100 - 0.5) * 2*Math.PI
 }
 
 /**
@@ -174,11 +174,11 @@ export function arcOutline(
         let x =
           chartHeight +
           offset * 2 +
-          Math.cos(endAngle - 1.5*Math.PI / 2) * (chartHeight * spacing)
+          Math.cos(endAngle - 2*Math.PI / 2) * (chartHeight * spacing)
         let y =
           chartHeight +
           offset +
-          Math.sin(endAngle - 1.5*Math.PI / 2) * (chartHeight * spacing)
+          Math.sin(endAngle - 2*Math.PI / 2) * (chartHeight * spacing)
 
         // font size
         let fontScale = 0.09
