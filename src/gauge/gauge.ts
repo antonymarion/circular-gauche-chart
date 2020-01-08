@@ -91,6 +91,11 @@ export function arcOutline(
       .append('linearGradient')
       .attr('id', 'MyGradient')
 
+    let linearGradient2 = svg
+      .append('defs')
+      .append('linearGradient')
+      .attr('id', 'MyGradient2')
+
     linearGradient
       .append('stop')
       .attr('offset', '5%')
@@ -98,13 +103,23 @@ export function arcOutline(
 
     linearGradient
       .append('stop')
-      .attr('offset', '95%')
+      .attr('offset', '60%')
       .attr('stop-color', '#4eff00')
+
+    linearGradient2
+      .append('stop')
+      .attr('offset', '5%')
+      .attr('stop-color', '#320300')
+
+    linearGradient2
+      .append('stop')
+      .attr('offset', '60%')
+      .attr('stop-color', '#ff002e')
 
     let innerArc = svg
       .append('path')
       .attr('d', gaugeArc)
-      .attr('fill', 'url(#MyGradient)')
+      .attr('fill', i === 0 ? 'url(#MyGradient)' : 'url(#MyGradient2)')
       .attr(
         'transform',
         'translate(' +
@@ -125,7 +140,7 @@ export function arcOutline(
         .append('path')
         .attr('d', gaugeArc)
         .attr('fill', 'transparent')
-        .attr('opacity', '0.2')
+        .attr('opacity', '1')
         .attr(
           'transform',
           'translate(' +
@@ -217,7 +232,7 @@ export function arcOutline(
         // labels on the right need little to no offset
         // endAngle = -PI/2 => offset = -width
         // endAngle = PI/2 => offset = 0
-        let xPadding = 4
+        let xPadding = 15
         let xOffset =
           ((endAngle - Math.PI / 2) / Math.PI) * (size.width + xPadding)
 
@@ -333,7 +348,7 @@ export function labelOutline(
   rangeLabelFontSize: number,
   labelsFont: string,
 ) {
-  let arcWidth = chartHeight - outerRadius
+  let arcWidth = Math.round(2 * (chartHeight - outerRadius))
 
   // Fonts specification (responsive to chart size)
   rangeLabelFontSize = rangeLabelFontSize || Math.round(chartHeight * 0.18)
@@ -454,7 +469,7 @@ export function gaugeChart(
   let svg = select(element)
     .append('svg')
     .attr('width', chartWidth + offset * 2)
-    .attr('height', chartHeight + offset * 4)
+    .attr('height', chartWidth + offset * 2)
 
   arcOutline(
     svg,

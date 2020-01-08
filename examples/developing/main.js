@@ -2,21 +2,18 @@ let element = document.querySelector('#gaugeArea')
 
 let gaugeOptions = {
   // needle options
-  hasNeedle: true,
+  hasNeedle: false,
   outerNeedle: false,
   needleColor: 'gray',
   needleStartValue: 10,
   needleUpdateSpeed: 1000,
   // arc options
-  arcColors: [],
-  arcDelimiters: [10, 60, 90],
-  arcPadding: 6,
-  arcPaddingColor: 'white',
-  arcLabels: ['35', '210', '315'],
+  arcColors: ['rgb(24,175,0)', 'rgb(279,0,0)'],
+  arcDelimiters: [80],
+  arcPadding: 0,
+  arcPaddingColor: 'red',
+  arcLabels: ['35'],
   arcLabelFontSize: false,
-  //arcOverEffect: false,
-  // label options
-  rangeLabel: ['0', '350'],
   centralLabel: '175',
   rangeLabelFontSize: false,
   labelsFont: 'Consolas',
