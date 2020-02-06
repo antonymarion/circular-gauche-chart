@@ -22,6 +22,9 @@
     "forkChecker": true,
     "useWebpackText": true
   },
+  "angularCompilerOptions": {
+    "enableIvy": true
+  },
   "compileOnSave": false,
   "buildOnSave": false,
   "atom": {
