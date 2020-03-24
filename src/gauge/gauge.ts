@@ -57,6 +57,27 @@ export function perc2RadWithShift(perc: number) {
  * @param arcDelimiters - array of delimiters in percentage.
  * @returns modified svg.
  */
+
+function shadeColor(color, percent) {
+  let R = parseInt(color.substring(1, 3), 16)
+  let G = parseInt(color.substring(3, 5), 16)
+  let B = parseInt(color.substring(5, 7), 16)
+
+  R = parseInt('' + (R * (100 + percent)) / 100)
+  G = parseInt('' + (G * (100 + percent)) / 100)
+  B = parseInt('' + (B * (100 + percent)) / 100)
+
+  R = R < 255 ? R : 255
+  G = G < 255 ? G : 255
+  B = B < 255 ? B : 255
+
+  let RR = R.toString(16).length == 1 ? '0' + R.toString(16) : R.toString(16)
+  let GG = G.toString(16).length == 1 ? '0' + G.toString(16) : G.toString(16)
+  let BB = B.toString(16).length == 1 ? '0' + B.toString(16) : B.toString(16)
+
+  return '#' + RR + GG + BB
+}
+
 export function arcOutline(
   svg,
   chartHeight: number,
@@ -81,51 +102,29 @@ export function arcOutline(
       .startAngle(startAngle)
       .endAngle(endAngle)
 
-    // .append('<linearGradient id="MyGradient">' +
-    //   '<stop offset="5%" stop-color="orange"></stop>' +
-    //   '<stop offset="95%" stop-color="yellow"></stop>' +
-    //   '</linearGradient>')
-
+    const currentGradientName = 'MyCircularGradient' + i
     let linearGradient = svg
       .append('defs')
       .append('linearGradient')
-      .attr('id', 'MyCircularGradient')
-
-    let linearGradient2 = svg
-      .append('defs')
-      .append('linearGradient')
-      .attr('id', 'MyCircularGradient2')
+      .attr('id', currentGradientName)
 
     linearGradient
       .append('stop')
       .attr('offset', '0%')
-      .attr('stop-color', '#013220')
+      .attr('stop-color', shadeColor(color, -40))
       .append('stop')
       .attr('offset', '30%')
-      .attr('stop-color', '#013220')
+      .attr('stop-color', shadeColor(color, -30))
 
     linearGradient
       .append('stop')
       .attr('offset', '60%')
-      .attr('stop-color', '#4eff00')
-
-    linearGradient2
-      .append('stop')
-      .attr('offset', '5%')
-      .attr('stop-color', '#320300')
-
-    linearGradient2
-      .append('stop')
-      .attr('offset', '60%')
-      .attr('stop-color', '#ff002e')
+      .attr('stop-color', color)
 
     let innerArc = svg
       .append('path')
       .attr('d', gaugeArc)
-      .attr(
-        'fill',
-        i === 0 ? 'url(#MyCircularGradient)' : 'url(#MyCircularGradient2)',
-      )
+      .attr('fill', 'url(' + currentGradientName + ')')
       .attr(
         'transform',
         'translate(' +
