@@ -124,7 +124,7 @@ export function arcOutline(
     let innerArc = svg
       .append('path')
       .attr('d', gaugeArc)
-      .attr('fill', 'url(' + currentGradientName + ')')
+      .attr('fill', 'url(#' + currentGradientName + ')')
       .attr(
         'transform',
         'translate(' +
