@@ -111,10 +111,10 @@ export function arcOutline(
     linearGradient
       .append('stop')
       .attr('offset', '0%')
-      .attr('stop-color', shadeColor(color, -40))
+      .attr('stop-color', shadeColor(color, -10))
       .append('stop')
       .attr('offset', '30%')
-      .attr('stop-color', shadeColor(color, -30))
+      .attr('stop-color', shadeColor(color, -5))
 
     linearGradient
       .append('stop')
