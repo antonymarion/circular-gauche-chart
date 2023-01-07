@@ -39,7 +39,7 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.0.1",
     "husky": "^0.14.3",
-    "istanbul-instrumenter-loader": "^2.0.0",
+    "istanbul-instrumenter-loader": "^3.0.1",
     "jasmine-core": "^2.99.1",
     "karma": "^4.0.1",
     "karma-chrome-launcher": "^2.2.0",
